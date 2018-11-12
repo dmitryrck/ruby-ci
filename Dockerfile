@@ -1,4 +1,4 @@
-from ruby
+from ruby:2.6.5
 
 env DEBIAN_FRONTEND=noninteractive \
   CHROMEDRIVER_VERSION=2.43 \
