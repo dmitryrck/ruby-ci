@@ -42,4 +42,6 @@ To verify only your changes in the PR use:
 $ docker run -v $(pwd):/app -w /app --rm dmitryrck/ruby:ready pronto run --exit-code -c origin/master
 ```
 
+For more information about pronto see [https://github.com/prontolabs/pronto](https://github.com/prontolabs/pronto).
+
 Don't forget to submit your `.rubcop.yml` or `.pronto.yml` to your repository.
