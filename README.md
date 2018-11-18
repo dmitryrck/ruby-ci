@@ -42,6 +42,10 @@ To verify only your changes in the PR use:
 $ docker run -v $(pwd):/app -w /app --rm dmitryrck/ruby:ready pronto run --exit-code -c origin/master
 ```
 
-For more information about pronto see [https://github.com/prontolabs/pronto](https://github.com/prontolabs/pronto).
+*Warning*. [eslint](https://eslint.org) is the only runner that breaks if there is no config file. I found no way to disable a runner in pronto, so you have to create an empty file to run `dmitryrck/ruby:ready`:
 
-Don't forget to submit your `.rubcop.yml` or `.pronto.yml` to your repository.
+```terminal
+$ touch .eslintrc.js
+```
+
+For more information about pronto see [https://github.com/prontolabs/pronto](https://github.com/prontolabs/pronto).
