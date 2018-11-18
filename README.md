@@ -49,3 +49,51 @@ $ touch .eslintrc.js
 ```
 
 For more information about pronto see [https://github.com/prontolabs/pronto](https://github.com/prontolabs/pronto).
+
+## Troubleshooting
+
+### "I'm using dmitryrck/ruby:ready, but it does not check my *.vue files."
+
+You have to create `.pronto_eslint_npm.yml` with this content:
+
+```yaml
+files_to_lint: "(js|vue)"
+```
+
+And update your `.eslintrc.js` to something similar to:
+
+```javascript
+module.exports = {
+  "extends": [
+    "eslint:recommended",
+    "plugin:vue/recommended",
+  ],
+}
+```
+
+### "It is not checking *.vue files properly"
+
+I can only say:
+
+> I know that feel bro
+
+![](I-know-that-feeling-bro.jpg)
+
+Changes like:
+
+```diff
+ <template>
+-  <div>
++    <div>
+     <div>
+```
+
+Are checked fine, but something like:
+
+```diff
+ <script>
+-import CoolComponent from "@/CoolComponent"
++  import CoolComponent from "@/CoolComponent"
+```
+
+Is not. And I have no idea why.
