@@ -1,6 +1,6 @@
 # Running
 
-## Using with docker-compose.
+## Using with docker-compose
 
 ```yaml
 version: "3"
@@ -13,10 +13,9 @@ services:
       - bundle_path:/bundle
     environment:
       - HOME=/root
-      - BUNDLE_PATH=/bundle/vendor
       - BUNDLE_APP_CONFIG=/app/.bundle
       - BUNDLE_BIN=/bundle/vendor/bin
-      - DISABLE_DATABASE_ENVIRONMENT_CHECK=1
+      - BUNDLE_PATH=/bundle/vendor
       - GEM_HOME=/bundle/vendor
     working_dir: /app
     command: bundle exec puma -p 3000 config.ru
