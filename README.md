@@ -42,12 +42,6 @@ To verify only your changes in the PR use:
 $ docker run -v $(pwd):/app -w /app --rm dmitryrck/ruby:ready pronto run --exit-code -c origin/master
 ```
 
-*Warning*. [eslint](https://eslint.org) is the only runner that breaks if there is no config file. I found no way to disable a runner in pronto, so you have to create an empty file to run `dmitryrck/ruby:ready`:
-
-```terminal
-$ touch .eslintrc.js
-```
-
 For more information about pronto see [https://github.com/prontolabs/pronto](https://github.com/prontolabs/pronto).
 
 ## Troubleshooting
@@ -97,3 +91,13 @@ Are checked fine, but something like:
 ```
 
 Is not. And I have no idea why.
+
+### "ESLint says: Oops! Something went wrong! :("
+
+If you change a `.js` pronto will call ESLint. I found no way to disable a runner in pronto. You can build yourself a [ready](https://github.com/dmitryrck/ruby-ci/tree/ready) image or create an empty file:
+
+```terminal
+$ touch .eslintrc.js
+```
+
+This way ESLint will use a default configuration.
