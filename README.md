@@ -10,19 +10,16 @@ services:
     image: dmitryrck/ruby
     volumes:
       - .:/app
-      - bundle_path:/bundle
-    environment:
-      - HOME=/root
-      - BUNDLE_APP_CONFIG=/app/.bundle
-      - BUNDLE_BIN=/bundle/vendor/bin
-      - BUNDLE_PATH=/bundle/vendor
-      - GEM_HOME=/bundle/vendor
+      - bundle_path:/usr/local/bundle
     working_dir: /app
     command: bundle exec puma -p 3000 config.ru
     depends_on:
       - "db"
     ports:
       - "3000:3000"
+
+volumes:
+  bundle_path:
 ```
 
 And you can use `docker-compose up app`.
