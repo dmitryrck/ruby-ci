@@ -13,6 +13,9 @@ services:
       - bundle_path:/usr/local/bundle
     environment:
       - BUNDLE_APP_CONFIG=/app/.bundle
+      - DISABLE_SPRING=1
+      - DISABLE_PRY_RAILS=1
+      - DISABLE_DATABASE_ENVIRONMENT_CHECK=1
     working_dir: /app
     command: bundle exec puma -p 3000 config.ru
     depends_on:
