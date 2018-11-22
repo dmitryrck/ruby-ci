@@ -11,6 +11,8 @@ services:
     volumes:
       - .:/app
       - bundle_path:/usr/local/bundle
+    environment:
+      - BUNDLE_APP_CONFIG=/app/.bundle
     working_dir: /app
     command: bundle exec puma -p 3000 config.ru
     depends_on:
