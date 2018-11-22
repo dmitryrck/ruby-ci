@@ -17,7 +17,7 @@ services:
       - DISABLE_PRY_RAILS=1
       - DISABLE_DATABASE_ENVIRONMENT_CHECK=1
     working_dir: /app
-    command: bundle exec puma -p 3000 config.ru
+    command: bundle exec rails server -b 0.0.0.0 -p 3000
     depends_on:
       - "db"
     ports:
