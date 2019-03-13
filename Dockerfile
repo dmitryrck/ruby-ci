@@ -16,4 +16,5 @@ run sed -i "/deb-src/d" /etc/apt/sources.list && \
   curl -sSL "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz" | tar xfJ - -C /usr/local --strip-components=1 && \
   wget -q http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip && \
   unzip chromedriver_linux64.zip -d /usr/local/bin && rm chromedriver_linux64.zip && \
+  gem update --system && \
   rm -rf /var/lib/apt/lists/*
