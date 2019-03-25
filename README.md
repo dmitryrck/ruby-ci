@@ -1,5 +1,9 @@
 # Running
 
+The main image has only the essential to run Ruby, connect with PostgreSQL, and to run automated tests using Google Chrome Headless.
+
+For other images see the [Other images](#other-images).
+
 ## Using with docker-compose
 
 ```yaml
@@ -29,10 +33,7 @@ volumes:
 
 And you can use `docker-compose up app`.
 
-## Code quality
+## Other images
 
-See [ready](ready).
-
-## Cloud9 IDE using docker.
-
-See [c9](c9).
+* [Code quality](ready)
+* [Cloud9 IDE](c9)
