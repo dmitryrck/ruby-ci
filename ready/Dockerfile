@@ -18,6 +18,6 @@ run sed -i "/deb-src/d" /etc/apt/sources.list && \
     eslint-plugin-promise@latest \
     eslint-plugin-standard@latest && \
   gem install --no-document pronto pronto-rubocop pronto-flay rubocop-rspec \
-    pronto-eslint_npm pronto-reek pronto-fasterer && \
+    rubocop-performance pronto-eslint_npm pronto-reek pronto-fasterer && \
   rm -rf /var/lib/apt/lists/*
 
