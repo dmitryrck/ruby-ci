@@ -1,4 +1,4 @@
-from ruby
+from ruby:2.4.9
 
 env DEBIAN_FRONTEND=noninteractive \
   LANG=en_US.UTF-8 \
@@ -16,5 +16,5 @@ run sed -i "/deb-src/d" /etc/apt/sources.list && \
   curl -sSL "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz" | tar xfJ - -C /usr/local --strip-components=1 && \
   wget -q http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip && \
   unzip chromedriver_linux64.zip -d /usr/local/bin && rm chromedriver_linux64.zip && \
-  gem update --system && gem install bundler:1.17.2 && npm install -g parcel-bundler && \
+  gem update --system && npm install -g parcel-bundler && \
   rm -rf /var/lib/apt/lists/*
