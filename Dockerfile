@@ -1,8 +1,8 @@
-from ruby
+from ruby:2.6.6
 
 env DEBIAN_FRONTEND=noninteractive \
   CHROMEDRIVER_VERSION=2.43 \
-  NODE_VERSION=10.13.0
+  NODE_VERSION=12.17.0
 
 run sed -i "/deb-src/d" /etc/apt/sources.list && \
   wget -q -O- https://dl.google.com/linux/linux_signing_key.pub | apt-key add - && \
