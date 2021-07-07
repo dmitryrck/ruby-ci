@@ -1,8 +1,8 @@
-from ruby:2.7.2
+from ruby:2.7.4
 
 env \
   DEBIAN_FRONTEND=noninteractive \
-  NODE_VERSION=12.18.3
+  NODE_VERSION=14.17.2
 
 run \
   sed -i "/deb-src/d" /etc/apt/sources.list && \
