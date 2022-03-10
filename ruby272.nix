@@ -1,6 +1,6 @@
 # build with:
 # ```
-# nix-build ruby.nix
+# nix-build ruby272.nix
 # ```
 
 { pkgs ? import <nixpkgs> {} }:
@@ -30,7 +30,7 @@ pkgs.stdenv.mkDerivation {
   ];
 
   unpackPhase = ''
-    tar xfz $src -C /build
+    tar xfz $src
   '';
 
   configurePhase = ''

@@ -1,6 +1,6 @@
 # build with:
 # ```
-# nix-build ruby.nix
+# nix-build ruby272.nix
 # ```
 
 { pkgs ? import <nixpkgs> {} }:
@@ -30,11 +30,11 @@ pkgs.stdenv.mkDerivation {
   ];
 
   unpackPhase = ''
-    tar xfz $src -C /build
+    tar xfz $src
   '';
 
   configurePhase = ''
-    cd ruby-2.7.4
+    cd ruby-$version
     ./configure --prefix=$out --disable-install-doc --disable-install-rdoc
   '';
 

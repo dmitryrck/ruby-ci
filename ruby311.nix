@@ -1,18 +1,18 @@
 # build with:
 # ```
-# nix-build ruby275.nix
+# nix-build ruby311.nix
 # ```
 
 { pkgs ? import <nixpkgs> {} }:
 with import <nixpkgs> {};
 
 pkgs.stdenv.mkDerivation {
-  name = "ruby275";
-  version = "2.7.5";
+  name = "ruby311";
+  version = "3.1.1";
 
   src = pkgs.fetchurl {
-    url = "https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.5.tar.gz";
-    sha256 = "2755b900a21235b443bb16dadd9032f784d4a88f143d852bc5d154f22b8781f1";
+    url = "https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.1.tar.gz";
+    sha256 = "fe6e4782de97443978ddba8ba4be38d222aa24dc3e3f02a6a8e7701c0eeb619d";
   };
 
   phases = [

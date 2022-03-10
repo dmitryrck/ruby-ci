@@ -1,13 +1,13 @@
 # build with:
 # ```
-# nix-build ruby.nix
+# nix-build ruby266.nix
 # ```
 
 { pkgs ? import <nixpkgs> {} }:
 with import <nixpkgs> {};
 
 pkgs.stdenv.mkDerivation {
-  name = "ruby272";
+  name = "ruby266";
   version = "2.6.6";
 
   src = pkgs.fetchurl {
@@ -30,7 +30,7 @@ pkgs.stdenv.mkDerivation {
   ];
 
   unpackPhase = ''
-    tar xfz $src -C /build
+    tar xfz $src
   '';
 
   configurePhase = ''
