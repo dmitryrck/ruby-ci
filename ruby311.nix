@@ -23,10 +23,11 @@ pkgs.stdenv.mkDerivation {
   ];
 
   buildInputs = [
-    openssl
-    zlib
-    readline
+    autoconf
     gdbm
+    openssl
+    readline
+    zlib
   ];
 
   unpackPhase = ''

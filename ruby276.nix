@@ -23,10 +23,19 @@ pkgs.stdenv.mkDerivation {
   ];
 
   buildInputs = [
-    openssl
-    zlib
-    readline
+    autoconf
     gdbm
+    openssl
+    ncurses
+    groff
+    libyaml
+    libffi
+    jemalloc
+    bison
+    libiconv
+    libunwind
+    readline
+    zlib
   ];
 
   unpackPhase = ''
