@@ -1,5 +1,16 @@
 # ruby-ci
 
+Docker and nix files to run ruby on CIs and development machines.
+
+You can use the dockerfiles on production but they do have too much software installed for a production environment. I recommend using the ruby images directly (that is what I do).
+
+I tend to add new ones and forget about older versions, if you run into any problem send a PR, I am very happy to accept that and rebuild the image, but please:
+
+* I don't rebuild any image already on hub.docker.com, instead I increment the building number (more on that later on)
+* Please follow the source code already in the repo (one example: docker instructions in lower case)
+
+## Dockerfiles
+
 There are three images on this repo:
 
 * the _main image_ has only the essential to run Ruby, connect with PostgreSQL, and to run automated tests using Google Chrome Headless, you may need to add more dependencies on your `Gemfile`
@@ -12,7 +23,9 @@ I also try not to break the images that are already on hub.docker.com, instead o
 
 The first version of _style check_ image was called `dmitryrck/ruby:ready` and one of the updated version is `dmitryrck/ruby:ready1`.
 
-## Running automated tests with docker-compose
+### Running automated tests with docker-compose
+
+File `docker-compose.yml`:
 
 ```yaml
 version: "3"
@@ -39,11 +52,11 @@ volumes:
   bundle_path:
 ```
 
-You can use `docker-compose up app` to start the app or `docker-compose run app command` to run a command inside the container.
+You can use `docker-compose up app` to start the app or `docker-compose run app command` to run a `command` inside the container.
 
 Get more information about docker-compose here: https://docs.docker.com/compose/ .
 
-## Using pronto with GitHub Actions
+### Using pronto with GitHub Actions
 
 Create the file `.github/workflows/style.yml` with this content:
 
@@ -85,4 +98,54 @@ Replace `main` with the name of the branch the PRs go to.
 
 This workflow is heavily based on [https://github.com/prontolabs/pronto#github-actions-integration](https://github.com/prontolabs/pronto#github-actions-integration) all credits to the pronto team ♥️.
 
-As I said before, the code quality images start with `ready*` you may need to change it on the YAML file based on your needs.
+As I said before, the code quality images start with `ready*`, change the configuration for your project following the documentation written by the pronto team and the gem it uses.
+
+## Nix files
+
+I have been using nix in my development machine for a while, so I decided to share because nix delete old images from their main repo as they become no longer supported AND nix takes too much time to build new ones.
+
+If you want to run nix this is an example of a `shell.nix`:
+
+```
+with import <nixpkgs> {};
+
+mkShell {
+  buildInputs = [
+    (pkgs.callPackage /Users/dmitry/Dev/dmitryrck/ruby-ci/nix/ruby313.nix {})
+    # Comment the line above and uncomment the line below to use ruby from the official nix repo
+    #ruby_3_1
+    nodejs
+    postgresql
+
+    gcc
+    sqlite # mailcatcher
+    lzma # nokogigi
+    nss # google-chrome & chromedriver
+    openssl
+    pkgconfig
+    readline
+    zlib # nokogiri
+  ]
+    ++ lib.optional pkgs.stdenv.isLinux pkgs.google-chrome
+  ;
+
+  shellHook = ''
+    USER_CACHE_PATH=~/.cache/niz/$(basename $(pwd))
+
+    export NODE_PATH=$USER_CACHE_PATH/node12
+    mkdir -p $NODE_PATH
+    export NPM_CONFIG_PREFIX=$NODE_PATH
+    export PATH=$NODE_PATH/bin:$PATH
+
+    export GEM_HOME=$USER_CACHE_PATH/ruby-$(ruby --version | cut -d' ' -f2)
+    mkdir -p $GEM_HOME
+    export GEM_PATH=$GEM_HOME
+    export PATH=$GEM_HOME/bin:$PATH
+    export WD_INSTALL_DIR=$GEM_HOME/bin
+
+    gem list -i ^bundler$ -v 2.3.22|| gem install bundler --version=2.3.22 --no-document
+  '';
+}
+```
+
+As you can see in line 5 you need to git clone this project somewhere.
