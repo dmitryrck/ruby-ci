@@ -118,12 +118,14 @@ mkShell {
     postgresql
 
     gcc
-    sqlite # mailcatcher
+
+    libyaml # gem psych
     lzma # nokogigi
     nss # google-chrome & chromedriver
     openssl
-    pkgconfig
+    pkg-config
     readline
+    sqlite # mailcatcher
     zlib # nokogiri
   ]
     ++ lib.optional pkgs.stdenv.isLinux pkgs.google-chrome
@@ -141,7 +143,6 @@ mkShell {
     mkdir -p $GEM_HOME
     export GEM_PATH=$GEM_HOME
     export PATH=$GEM_HOME/bin:$PATH
-    export WD_INSTALL_DIR=$GEM_HOME/bin
 
     gem list -i ^bundler$ -v 2.3.22|| gem install bundler --version=2.3.22 --no-document
   '';
