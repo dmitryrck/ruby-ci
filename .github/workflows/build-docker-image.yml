@@ -18,5 +18,5 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         run: echo $DOCKER_TOKEN | docker login --username $DOCKER_USERNAME --password-stdin
       - run: \rm -fr .git
-      - run: docker build -t dmitryrck/ruby:3.3.6 dockerfiles/3.3.6
-      - run: docker push dmitryrck/ruby:3.3.6
+      - run: docker build -t dmitryrck/ruby:3.3.8 dockerfiles/3.3.8
+      - run: docker push dmitryrck/ruby:3.3.8
