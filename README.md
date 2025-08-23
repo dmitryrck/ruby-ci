@@ -1,3 +1,5 @@
+**WARNING**: moved to https://codeberg.org/dmitryrck/ruby-ci .
+
 # ruby-ci
 
 Docker and nix files to run ruby on CIs and development machines.
