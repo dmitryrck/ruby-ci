@@ -126,7 +126,7 @@ mkShell {
     pkg-config
     readline
     sqlite # mailcatcher
-    zlib # nokogiri
+    zlib # nokogiri & bigdecimal
   ]
     ++ lib.optional pkgs.stdenv.isLinux pkgs.google-chrome
   ;
